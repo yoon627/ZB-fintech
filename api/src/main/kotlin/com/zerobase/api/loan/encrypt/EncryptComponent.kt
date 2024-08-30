@@ -9,15 +9,14 @@ import javax.crypto.spec.SecretKeySpec
 @Component
 class EncryptComponent {
     companion object {
-        private const val secretKey = "12345678901234567890123456"
+        private const val secretKey = "12345678901234561234567890123456"
     }
 
     private val encoder = Base64.getEncoder()
     private val decoder = Base64.getDecoder()
 
     fun encryptString(encryptString: String): String {
-        val encryptedString =
-            cipherPkcs5(Cipher.ENCRYPT_MODE, secretKey).doFinal(encryptString.toByteArray(Charsets.UTF_8))
+        val encryptedString = cipherPkcs5(Cipher.ENCRYPT_MODE, secretKey).doFinal(encryptString.toByteArray(Charsets.UTF_8))
 
         return String(encoder.encode(encryptedString))
     }
@@ -29,7 +28,7 @@ class EncryptComponent {
     }
 
     fun cipherPkcs5(opMode: Int, secretKey: String): Cipher {
-        val c = Cipher.getInstance("AES/CBC/PKCS5PADDING")
+        val c = Cipher.getInstance("AES/CBC/PKCS5Padding")
         val sk = SecretKeySpec(secretKey.toByteArray(Charsets.UTF_8), "AES")
         val iv = IvParameterSpec(secretKey.substring(0, 16).toByteArray(Charsets.UTF_8))
         c.init(opMode, sk, iv)
