@@ -11,3 +11,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/fintech?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: fintech
     password: fintech
+redis:
+  host: localhost
+  port: 6379
